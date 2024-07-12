@@ -1,0 +1,7 @@
+body{
+    background-color: #fdfdfd;
+}
+
+.ant-table-thead .ant-table-cell{
+    background-color: #fff !important;
+}
