@@ -5,18 +5,23 @@ import Header from "@/views/static/Header.vue";
 </script>
 
 <template>
-  <a-layout>
-    <Sidebar />
+  <div v-if="!isLoginPage">
     <a-layout>
-      <Header />
-      <a-layout-content style="min-height: 83vh" :style="{ margin: '24px 16px 0' }">
-        <router-view/>
-      </a-layout-content>
-      <a-layout-footer style="text-align: center">
-        Droneqube ©2024 Created by <a href="https://www.linkedin.com/in/mert-m%C3%BCstehlik-778233222/" target="_blank">Mert Mustehlik</a>
-      </a-layout-footer>
+      <Sidebar />
+      <a-layout>
+        <Header />
+        <a-layout-content style="min-height: 83vh" :style="{ margin: '24px 16px 0' }">
+          <router-view/>
+        </a-layout-content>
+        <a-layout-footer style="text-align: center">
+          Droneqube ©2024 Created by <a href="https://www.linkedin.com/in/mert-m%C3%BCstehlik-778233222/" target="_blank">Mert Mustehlik</a>
+        </a-layout-footer>
+      </a-layout>
     </a-layout>
-  </a-layout>
+  </div>
+  <div v-else>
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped>
@@ -27,3 +32,13 @@ import Header from "@/views/static/Header.vue";
 }
 
 </style>
+
+<script>
+export default {
+  computed: {
+    isLoginPage() {
+      return this.$route.name === 'login';
+    }
+  }
+};
+</script>

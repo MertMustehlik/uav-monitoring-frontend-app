@@ -1,30 +1,32 @@
 import {API_URL, JWT_TOKEN} from "./index";
 
-export const getDrones = async () => {
+export const login = async (email, password) => {
     try {
-        const response = await fetch(`${API_URL}/drones/`, {
-            method: 'GET',
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        const response = await fetch(`${API_URL}/auth/login`, {
+            method: 'POST',
             headers: {
                 'Authorization': `Bearer ${JWT_TOKEN}`,
             },
+            body: formData
         });
+
         return await response.json();
     } catch (error) {
         console.error('Error fetching drones:', error);
     }
 };
 
-export const createDrone = async (name) => {
+export const authCheck = async () => {
     try {
-        const formData = new FormData();
-        formData.append('name', name);
-
-        const response = await fetch(`${API_URL}/drones/`, {
+        const response = await fetch(`${API_URL}/auth/check`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`
+                'Authorization': `Bearer ${JWT_TOKEN}`,
             },
-            body: formData
         });
 
         return await response.json();

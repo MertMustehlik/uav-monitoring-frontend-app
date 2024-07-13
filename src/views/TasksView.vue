@@ -54,7 +54,7 @@ export default {
       try {
         const tasks = await getTasks();
         let dataSource = []
-        tasks?.payload.map((item) => {
+        tasks?.payload?.map((item) => {
           dataSource.push({
             "key": item?.id,
             "id": item?.id,
@@ -79,7 +79,7 @@ export default {
       try {
         const drones = await getDrones();
         let droneOptions = []
-        drones?.payload.map((item) => {
+        drones?.payload?.map((item) => {
           droneOptions.push({
             "label": `${item?.id} | ${item?.name}`,
             "value": item?.id,

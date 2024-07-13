@@ -1,5 +1,7 @@
-<template>
-  <main>
-    Welcome to project
-  </main>
-</template>
+<script>
+export default {
+  mounted() {
+    this.$router.push(`/drones`);
+  }
+};
+</script>

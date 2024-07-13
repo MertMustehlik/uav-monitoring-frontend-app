@@ -40,7 +40,7 @@ export default {
       try {
         const drones = await getDrones();
         let dataSource = []
-        drones?.payload.map((item) => {
+        drones?.payload?.map((item) => {
           dataSource.push({
             "key": item?.id,
             "name": item?.name,

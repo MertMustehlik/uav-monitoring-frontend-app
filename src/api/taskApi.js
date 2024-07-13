@@ -1,11 +1,16 @@
-import {API_URL} from "./index";
+import {API_URL, JWT_TOKEN} from "./index";
 
 export const getTasks = async () => {
     try {
-        const response = await fetch(`${API_URL}/tasks`);
+        const response = await fetch(`${API_URL}/tasks/`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JWT_TOKEN}`,
+            },
+        });
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error:', error);
     }
 };
 export const createTask = async (name, description, droneId) => {
@@ -15,27 +20,40 @@ export const createTask = async (name, description, droneId) => {
         formData.append('description', description);
         formData.append('drone_id', droneId);
 
-        const response = await fetch(`${API_URL}/tasks`, {
+        const response = await fetch(`${API_URL}/tasks/`, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JWT_TOKEN}`,
+            },
             body: formData
         });
 
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error:', error);
     }
 };
 export const getTask = async (id) => {
     try {
-        const response = await fetch(`${API_URL}/tasks/${id}`);
+        const response = await fetch(`${API_URL}/tasks/${id}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JWT_TOKEN}`,
+            },
+        });
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error:', error);
     }
 };
 export const getImages = async (task_id) => {
     try {
-        const response = await fetch(`${API_URL}/tasks/${task_id}/images`);
+        const response = await fetch(`${API_URL}/tasks/${task_id}/images`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JWT_TOKEN}`,
+            },
+        });
         return await response.json();
     } catch (error) {
         console.error('Error fetching drones:', error);
@@ -44,12 +62,15 @@ export const getImages = async (task_id) => {
 export const execute = async (id) => {
     try {
         const response = await fetch(`${API_URL}/tasks/${id}/execute`, {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${JWT_TOKEN}`,
+            },
         });
 
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error:', error);
     }
 };
 

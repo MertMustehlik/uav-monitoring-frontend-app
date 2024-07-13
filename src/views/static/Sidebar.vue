@@ -13,8 +13,8 @@
           <span class="nav-text">Drones</span>
         </RouterLink>
       </a-menu-item>
-      <a-menu-item key="2">
-        <RouterLink to="/tasks" style="text-decoration: none">
+      <a-menu-item key="2" class="active router-link-exact-active">
+        <RouterLink to="/tasks" style="text-decoration: none" active-class="active">
           <span class="nav-text">Tasks</span>
         </RouterLink>
       </a-menu-item>
