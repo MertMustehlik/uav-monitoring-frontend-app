@@ -37,11 +37,7 @@ import Header from "@/views/static/Header.vue";
 <script>
 export default {
   mounted() {
-    // if (JWT_TOKEN) {
-    //   this.$router.push(`/`);
-    // }
-    //check login istek at bir kere
-
+    //
   },
   computed: {
     isLoginPage() {
