@@ -57,7 +57,7 @@ export default {
           });
         }
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     async fetchImages() {
@@ -72,7 +72,7 @@ export default {
           });
         }
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     async fetchExecute() {
@@ -93,7 +93,7 @@ export default {
           });
         }
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     showConfirmExecute(){
@@ -105,7 +105,7 @@ export default {
           await this.fetchImages();
         },
         onCancel() {
-          console.log('Cancel');
+          //
         }
       });
     }

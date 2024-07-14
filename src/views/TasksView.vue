@@ -66,7 +66,7 @@ export default {
 
         this.dataSource = dataSource
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     showModal() {
@@ -88,7 +88,7 @@ export default {
 
         this.droneOptions = droneOptions
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     async onSubmit(){

@@ -13,16 +13,20 @@ export default {
   name: 'Header',
   methods: {
     async logout() {
-      localStorage.removeItem('jwtToken');
+      let res = await this.$store.dispatch('auth/logout')
+      if (res?.success) {
+        notification["success"]({
+          message: 'Success',
+          description: res?.message ?? "",
+        });
 
-      notification["success"]({
-        message: 'Success',
-        description: "Exit made",
-      });
-
-      setTimeout(() => {
-        window.location.href = "/auth/login"
-      }, 100)
+        this.$router.push(`/auth/login`);
+      } else {
+        notification["error"]({
+          message: 'Error',
+          description: res?.message ?? "",
+        });
+      }
     }
   }
 }

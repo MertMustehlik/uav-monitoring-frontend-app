@@ -1,16 +1,17 @@
-import {API_URL, JWT_TOKEN} from "./index";
+import {API_URL} from "./index";
+import store from "../store";
 
 export const getDrones = async () => {
     try {
         const response = await fetch(`${API_URL}/drones/`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error fetching:', error);
     }
 };
 
@@ -22,7 +23,7 @@ export const createDrone = async (name) => {
         const response = await fetch(`${API_URL}/drones/`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`
             },
             body: formData
         });

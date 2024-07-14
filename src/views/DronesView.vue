@@ -50,7 +50,7 @@ export default {
 
         this.dataSource = dataSource
       } catch (error) {
-        console.error("Error fetching drones:", error);
+        console.error("Error fetching:", error);
       }
     },
     showModal() {

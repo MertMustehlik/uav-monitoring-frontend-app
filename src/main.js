@@ -6,10 +6,12 @@ import 'bootstrap/dist/js/bootstrap.bundle.min'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css';
 import './assets/main.css'
+import auth from './store/index'
 
 const app = createApp(App)
 
 app.use(router)
 app.use(Antd)
+app.use(auth)
 
 app.mount('#app')

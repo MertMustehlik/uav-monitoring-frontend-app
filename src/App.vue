@@ -7,14 +7,15 @@ import Header from "@/views/static/Header.vue";
 <template>
   <div v-if="!isLoginPage">
     <a-layout>
-      <Sidebar />
+      <Sidebar/>
       <a-layout>
-        <Header />
+        <Header/>
         <a-layout-content style="min-height: 83vh" :style="{ margin: '24px 16px 0' }">
           <router-view/>
         </a-layout-content>
         <a-layout-footer style="text-align: center">
-          Droneqube ©2024 Created by <a href="https://www.linkedin.com/in/mert-m%C3%BCstehlik-778233222/" target="_blank">Mert Mustehlik</a>
+          Droneqube ©2024 Created by <a href="https://www.linkedin.com/in/mert-m%C3%BCstehlik-778233222/"
+                                        target="_blank">Mert Mustehlik</a>
         </a-layout-footer>
       </a-layout>
     </a-layout>
@@ -35,6 +36,13 @@ import Header from "@/views/static/Header.vue";
 
 <script>
 export default {
+  mounted() {
+    // if (JWT_TOKEN) {
+    //   this.$router.push(`/`);
+    // }
+    //check login istek at bir kere
+
+  },
   computed: {
     isLoginPage() {
       return this.$route.name === 'login';

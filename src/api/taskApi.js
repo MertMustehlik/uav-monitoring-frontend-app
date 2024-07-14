@@ -1,11 +1,12 @@
-import {API_URL, JWT_TOKEN} from "./index";
+import {API_URL} from "./index";
+import store from "../store";
 
 export const getTasks = async () => {
     try {
         const response = await fetch(`${API_URL}/tasks/`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
         return await response.json();
@@ -23,7 +24,7 @@ export const createTask = async (name, description, droneId) => {
         const response = await fetch(`${API_URL}/tasks/`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
             body: formData
         });
@@ -38,7 +39,7 @@ export const getTask = async (id) => {
         const response = await fetch(`${API_URL}/tasks/${id}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
         return await response.json();
@@ -51,12 +52,12 @@ export const getImages = async (task_id) => {
         const response = await fetch(`${API_URL}/tasks/${task_id}/images`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error fetching:', error);
     }
 };
 export const execute = async (id) => {
@@ -64,7 +65,7 @@ export const execute = async (id) => {
         const response = await fetch(`${API_URL}/tasks/${id}/execute`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
 

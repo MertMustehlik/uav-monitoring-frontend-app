@@ -5,7 +5,7 @@ import TasksView from "@/views/TasksView.vue";
 import TaskDetails from "@/views/TaskDetails.vue";
 import LoginView from "@/views/LoginView.vue";
 import {authCheck} from "@/api/authApi.js";
-import {notification} from "ant-design-vue";
+import store from "../store"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -66,10 +66,14 @@ router.beforeEach(async (to, from, next) => {
     const isAuthenticated = await authCheck();
     if (!isAuthenticated?.success){
       localStorage.removeItem('jwtToken')
-      next("/auth/login")
+
+      next({ name: 'login' });
     }
     next();
   } else{
+    if (to.name === "login" && store.state.auth.check){
+      next({ name: 'home' });
+    }
     next();
   }
 });

@@ -19,9 +19,7 @@
   </div>
 </template>
 <script>
-import {login} from "@/api/authApi.js";
 import {notification} from "ant-design-vue";
-import {JWT_TOKEN} from "@/api/index.js";
 
 export default {
   data() {
@@ -35,32 +33,20 @@ export default {
   },
   methods: {
     async onSubmit() {
-      const response = await login(this.formState.email, this.formState.password)
-      if (response.success) {
-        this.formState.name = ""
-        this.open = false;
-
-        localStorage.setItem('jwtToken', response?.token);
-
+      let res = await this.$store.dispatch('auth/login', this.formState)
+      if (res?.success) {
         notification["success"]({
           message: 'Success',
-          description: response?.message ?? "",
+          description: res?.message ?? "",
         });
 
-        setTimeout(() => {
-          window.location.href = "/"
-        }, 200)
+        this.$router.push(`/`);
       } else {
         notification["error"]({
           message: 'Error',
-          description: response?.message ?? "",
+          description: res?.message ?? "",
         });
       }
-    }
-  },
-  mounted() {
-    if (JWT_TOKEN) {
-      this.$router.push(`/`);
     }
   }
 };

@@ -1,4 +1,6 @@
-import {API_URL, JWT_TOKEN} from "./index";
+import {API_URL} from "./index";
+import store from "../store";
+
 
 export const login = async (email, password) => {
     try {
@@ -9,14 +11,21 @@ export const login = async (email, password) => {
         const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
             body: formData
         });
 
         return await response.json();
     } catch (error) {
-        console.error('Error fetching drones:', error);
+        console.error('Error fetching:', error);
+    }
+};
+
+export const logout = async () => {
+    localStorage.removeItem('jwtToken');
+    return {
+        "success": true
     }
 };
 
@@ -25,7 +34,7 @@ export const authCheck = async () => {
         const response = await fetch(`${API_URL}/auth/check`, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${JWT_TOKEN}`,
+                'Authorization': `Bearer ${store.state.auth.jwtToken}`,
             },
         });
 
